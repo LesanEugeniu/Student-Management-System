@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style2.css}">
+    <title>Student Managament System</title>
+</head>
+<body>
+    <nav>
+        <a class="nav-bar-text" th:href="@{/students}">Student Managament System</a>
+        <p class="nav-bar-text">Student Managament</p>
+    </nav>
+    <div class="container">
+        <form action="#"
+              th:method="post"
+              th:action="@{/students/new}"
+              th:object="${student}">
+            <h1>Add New Student</h1>
+            <div>
+                <label for="firstName">Student First Name</label>
+                <input type="text" placeholder="Kumalala" id="firstName" th:field="*{firstName}">
+                <p class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+            </div>
+            <div>
+                <label for="lastName">Student Last Name</label>
+                <input type="text" placeholder="Jeka" id="lastName" th:field="*{lastName}">
+                <p class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+            </div>
+            <div>
+                <label for="email">Student Email</label>
+                <input type="text" placeholder="kjeka@example.com" id="email" th:field="*{email}">
+                <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

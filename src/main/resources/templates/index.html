@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>Student Managament System</title>
+</head>
+<body>
+    <nav>
+        <a class="nav-bar-text" th:href="@{/students}">Student Managament System</a>
+        <p class="nav-bar-text">Student Managament</p>
+    </nav>
+    <div class="wrapper">
+        <div>
+            <div class="top-container">
+                <h1>List Students</h1>
+                <a class="btn btn-add" th:href="@{/students/new}">Add student</a>
+            </div>
+    
+            <div class="container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student First Name</th>
+                            <th>Student Last Name</th>
+                            <th>Student Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody th:if="${not #lists.isEmpty(students)}">
+                        <tr th:each="student: ${students}">
+                            <td th:text="${student.firstName}"></td>
+                            <td th:text="${student.lastName}"></td>
+                            <td th:text="${student.email}"></td>
+                            <td class="buttons">
+                                <a class="btn" th:href="@{/students/edit/{id} (id = ${student.id})}">Update</a>
+                                <form   th:action="@{/students/delete/{id} (id = ${student.id})}"
+                                        th:method="delete">
+                                    <input class="btn btn-red" type="submit" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
